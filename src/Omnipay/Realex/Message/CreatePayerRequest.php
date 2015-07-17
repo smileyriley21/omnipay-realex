@@ -13,7 +13,7 @@ use Omnipay\Realex\Message\CreatePayerResponse;
 class CreatePayerRequest extends RemoteAbstractRequest
 {
 
-    protected $endpoint = 'https://epage.payandshop.com/epage-remote-plugins.cgi ';
+    protected $endpoint = 'https://epage.payandshop.com/epage-remote-plugins.cgi';
 
     /**
      * This needs to be unique, ideally if you have a
@@ -22,7 +22,7 @@ class CreatePayerRequest extends RemoteAbstractRequest
      * @param $value
      * @return \Omnipay\Common\Message\AbstractRequest
      */
-    public function setPayerReference($value)
+    public function setPayerRef($value)
     {
         return $this->setParameter('payerRef', $value);
     }
@@ -32,7 +32,7 @@ class CreatePayerRequest extends RemoteAbstractRequest
      *
      * @param $value
      */
-    public function setTitle($value)
+    public function setPayerTitle($value)
     {
         $this->setParameter('payerTitle', $value);
     }
@@ -41,18 +41,20 @@ class CreatePayerRequest extends RemoteAbstractRequest
      * Customer firstname (e.g Margaret, Rob)
      * @param $value
      */
-    public function setFirstname($value)
+
+    public function setPayerFirstname($value)
     {
-        $this->setParameter('payerFirstname', $value);
+        return $this->setParameter('payerFirstname', $value);
     }
 
     /**
      * Customer Surname (e.g Van Der Brooke)
      * @param $value
      */
-    public function setSurname($value)
+
+    public function setPayerSurname($value)
     {
-        $this->setParameter('payerSurname', $value);
+        return $this->setParameter('payerSurname', $value);
     }
 
 
@@ -70,25 +72,25 @@ class CreatePayerRequest extends RemoteAbstractRequest
     /**
      * Return customer title
      */
-    public function getTitle()
+    public function getPayerTitle()
     {
-        $this->getParameter('payerTitle');
+        return  $this->getParameter('payerTitle');
     }
 
     /**
      * Return customer firstname
      */
-    public function getFirstname()
+    public function getPayerFirstname()
     {
-        $this->getParameter('payerFirstname');
+        return  $this->getParameter('payerFirstname');
     }
 
     /**
      * Return customer surname
      */
-    public function getSurname()
+    public function getPayerSurname()
     {
-        $this->getParameter('payerSurname');
+        return $this->getParameter('payerSurname');
     }
 
     /**
@@ -99,13 +101,17 @@ class CreatePayerRequest extends RemoteAbstractRequest
      */
     public function getData()
     {
-       // $this->validate('amount', 'currency', 'transactionId');
+
+
+        // $this->validate('amount', 'currency', 'transactionId');
 
         // Build the hash string
         $timestamp = strftime("%Y%m%d%H%M%S");
         $merchantId = $this->getMerchantId();
         $orderId = time() + rand(0, 1000); // Random number
         $payerRef = $this->getPayerReference();
+
+
         $secret = $this->getSecret();
         $tmp = "$timestamp.$merchantId.$orderId...$payerRef";
         $sha1hash = sha1($tmp);
@@ -134,18 +140,18 @@ class CreatePayerRequest extends RemoteAbstractRequest
         $payer = $domTree->createElement('payer');
         $payer->setAttribute('type', 'Website Customer');
         $payer->setAttribute('ref', $payerRef);
-        $root = $domTree->appendChild($payer);
+        $root->appendChild($payer);
 
         // Title
-        $title = $domTree->createElement('title', $this->getTitle());
+        $title = $domTree->createElement('title', $this->getPayerTitle());
         $root->appendChild($title);
 
         // Firstname
-        $firstname = $domTree->createElement('firstname', $this->getFirstname());
+        $firstname = $domTree->createElement('firstname', $this->getPayerFirstname());
         $root->appendChild($firstname);
 
         // Surname
-        $surname = $domTree->createElement('surname', $this->getSurname());
+        $surname = $domTree->createElement('surname', $this->getPayerSurname());
         $root->appendChild($surname);
 
         // Hash
@@ -153,6 +159,8 @@ class CreatePayerRequest extends RemoteAbstractRequest
         $root->appendChild($sha1El);
 
         $xmlString = $domTree->saveXML($root);
+
+
 
         return $xmlString;
 

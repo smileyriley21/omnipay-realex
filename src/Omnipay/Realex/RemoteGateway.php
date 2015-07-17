@@ -109,7 +109,7 @@ class RemoteGateway extends AbstractGateway
     {
         return $this->createRequest('\Omnipay\Realex\Message\RefundRequest', $parameters);
     }
-    
+
     public function void(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\Realex\Message\VoidRequest', $parameters);
