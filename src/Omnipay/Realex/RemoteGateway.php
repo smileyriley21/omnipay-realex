@@ -191,4 +191,18 @@ class RemoteGateway extends AbstractGateway
         return $this->createRequest('\Omnipay\Realex\Message\DeleteCardRequest', $parameters);
     }
 
+
+    /**
+     * Create Payer
+     *
+     * To enable adding cards you have to first add a Payer
+     *
+     * @param array $parameters
+     * @return \Omnipay\Realex\Message\CreateCardRequest
+     */
+    public function createPayer(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\Realex\Message\CreatePayerRequest', $parameters);
+    }
+
 }
