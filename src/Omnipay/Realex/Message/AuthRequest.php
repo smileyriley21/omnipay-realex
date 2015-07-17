@@ -155,9 +155,9 @@ class AuthRequest extends RemoteAbstractRequest
     }
 
     protected function createResponse($data)
-    {
-        return $this->response = new AuthResponse($this, $data);
-    }
+{
+    return $this->response = new AuthResponse($this, $data);
+}
 
     public function getEndpoint()
     {
