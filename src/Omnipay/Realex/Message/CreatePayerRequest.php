@@ -99,7 +99,7 @@ class CreatePayerRequest extends RemoteAbstractRequest
      */
     public function getData()
     {
-        $this->validate('amount', 'currency', 'transactionId');
+       // $this->validate('amount', 'currency', 'transactionId');
 
         // Build the hash string
         $timestamp = strftime("%Y%m%d%H%M%S");
