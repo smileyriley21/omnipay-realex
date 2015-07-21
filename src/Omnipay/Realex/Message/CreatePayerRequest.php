@@ -15,17 +15,7 @@ class CreatePayerRequest extends RemoteAbstractRequest
 
     protected $endpoint = 'https://epage.payandshop.com/epage-remote-plugins.cgi';
 
-    /**
-     * This needs to be unique, ideally if you have a
-     * customer table, is the primary key field (id)
-     *
-     * @param $value
-     * @return \Omnipay\Common\Message\AbstractRequest
-     */
-    public function setPayerRef($value)
-    {
-        return $this->setParameter('payerRef', $value);
-    }
+
 
     /**
      * Customer Title (Mr, Mrs etc)
@@ -76,16 +66,6 @@ class CreatePayerRequest extends RemoteAbstractRequest
         return $this->setParameter('payerTelephone', $value);
     }
 
-
-    /**
-     * Return the payer reference
-     *
-     * @return mixed
-     */
-    public function getPayerReference()
-    {
-        return $this->getParameter('payerRef');
-    }
 
 
     /**
