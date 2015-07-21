@@ -37,24 +37,43 @@ class CreatePayerRequest extends RemoteAbstractRequest
         $this->setParameter('payerTitle', $value);
     }
 
-    /**
-     * Customer firstname (e.g Margaret, Rob)
-     * @param $value
-     */
 
+    /**
+     * @param $value
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
     public function setPayerFirstname($value)
     {
         return $this->setParameter('payerFirstname', $value);
     }
 
     /**
-     * Customer Surname (e.g Van Der Brooke)
      * @param $value
+     * @return \Omnipay\Common\Message\AbstractRequest
      */
+    public function setPayerEmail($value)
+    {
+        return $this->setParameter('payerEmail', $value);
+    }
 
+
+    /**
+     * @param $value
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
     public function setPayerSurname($value)
     {
         return $this->setParameter('payerSurname', $value);
+    }
+
+
+    /**
+     * @param $value
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
+    public function setPayerTelephone($value)
+    {
+        return $this->setParameter('payerTelephone', $value);
     }
 
 
@@ -92,6 +111,23 @@ class CreatePayerRequest extends RemoteAbstractRequest
     {
         return $this->getParameter('payerSurname');
     }
+
+    /**
+     * Return customer email
+     */
+    public function getPayerEmail()
+    {
+        return $this->getParameter('payerEmail');
+    }
+
+    /**
+     * Return customer telephone
+     */
+    public function getPayerTelephone()
+    {
+        return $this->getParameter('payerTelephone');
+    }
+
 
     /**
      * Return the data required by this request
@@ -140,26 +176,36 @@ class CreatePayerRequest extends RemoteAbstractRequest
         $payer = $domTree->createElement('payer');
         $payer->setAttribute('type', 'Website Customer');
         $payer->setAttribute('ref', $payerRef);
-        $root->appendChild($payer);
 
         // Title
         $title = $domTree->createElement('title', $this->getPayerTitle());
-        $root->appendChild($title);
+        $payer->appendChild($title);
 
         // Firstname
         $firstname = $domTree->createElement('firstname', $this->getPayerFirstname());
-        $root->appendChild($firstname);
+        $payer->appendChild($firstname);
+
+        // Email
+        $email = $domTree->createElement('email', $this->getPayerEmail());
+        $payer->appendChild($email);
 
         // Surname
         $surname = $domTree->createElement('surname', $this->getPayerSurname());
-        $root->appendChild($surname);
+        $payer->appendChild($surname);
+
+        // Telephone
+        $phone_numbers = $domTree->createElement('phonenumbers');
+        $home = $domTree->createElement('home', $this->getPayerTelephone());
+        $phone_numbers->appendChild($home);
+        $payer->appendChild($phone_numbers);
+
+        $root->appendChild($payer);
 
         // Hash
         $sha1El = $domTree->createElement('sha1hash', $sha1hash);
         $root->appendChild($sha1El);
 
         $xmlString = $domTree->saveXML($root);
-
 
 
         return $xmlString;
