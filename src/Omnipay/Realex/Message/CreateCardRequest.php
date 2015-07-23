@@ -16,14 +16,6 @@ class CreateCardRequest extends RemoteAbstractRequest
 
 
 
-    public function getCardRef(){
-        return str_replace(' ', '', $this->getParameter('cardRef'));
-    }
-
-    public function setCardRef($value){
-        $this->setParameter('cardRef', $value);
-    }
-
     /**
      * Return the data required by this request
      *
@@ -61,8 +53,6 @@ class CreateCardRequest extends RemoteAbstractRequest
         $root->setAttribute('timestamp', $timestamp);
         $root = $domTree->appendChild($root);
 
-
-
         // merchant ID
         $root->appendChild($domTree->createElement('merchantid', $merchantId));
 
@@ -74,7 +64,6 @@ class CreateCardRequest extends RemoteAbstractRequest
 
         // Payer ref. The person this card is being assigned to
         $card->appendChild($domTree->createElement('payerref', $this->getPayerReference()));
-
 
         // Card Reference (Customers name for it, e.g. Current Account)
         $card->appendChild($domTree->createElement('ref', $this->getCardRef()));
@@ -91,11 +80,12 @@ class CreateCardRequest extends RemoteAbstractRequest
         // Type or Brand (e.g. VISA - Auto calculated)
         $card->appendChild($domTree->createElement('type', $credit_card->getBrand()));
 
+        // Issue number
+        $card->appendChild($domTree->createElement('issueno', $credit_card->getIssueNumber()));
 
+        // Add the card to the root node
         $root->appendChild($card);
 
-        // Issue number?
-        // To add
 
         // Hash
         $sha1El = $domTree->createElement('sha1hash', $sha1hash);

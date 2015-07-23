@@ -81,6 +81,13 @@ abstract class RemoteAbstractRequest extends AbstractRequest
         return $this->setParameter('payerRef', $value);
     }
 
+    public function getCardRef(){
+        return str_replace(' ', '', $this->getParameter('cardRef'));
+    }
+
+    public function setCardRef($value){
+        $this->setParameter('cardRef', $value);
+    }
 
 
     public function sendData($data)
