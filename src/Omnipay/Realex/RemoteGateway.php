@@ -215,7 +215,7 @@ class RemoteGateway extends AbstractGateway
      */
     public function createReceiptIn(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\Realex\Message\CreateReceiptInRequest', $parameters);
+        return $this->createRequest('\Omnipay\Realex\Message\ReceiptInRequest', $parameters);
     }
 
 }

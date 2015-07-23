@@ -10,7 +10,7 @@ use Omnipay\Common\Message\AbstractRequest;
  */
 class ReceiptInRequest extends RemoteAbstractRequest
 {
-    protected $endpoint = 'https://epage.payandshop.com/epage-remote.cgi';
+    protected $endpoint = 'https://epage.payandshop.com/epage-remote-plugins.cgi';
 
 
     /**
@@ -80,13 +80,15 @@ class ReceiptInRequest extends RemoteAbstractRequest
 
         $xmlString = $domTree->saveXML($root);
 
+        // dd($xmlString);
+
         return $xmlString;
     }
 
     protected function createResponse($data)
-{
-    return $this->response = new ReceiptInResponse($this, $data);
-}
+    {
+        return $this->response = new ReceiptInResponse($this, $data);
+    }
 
     public function getEndpoint()
     {
