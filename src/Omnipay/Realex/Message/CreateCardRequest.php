@@ -78,7 +78,11 @@ class CreateCardRequest extends RemoteAbstractRequest
         $card->appendChild($domTree->createElement('chname', $credit_card->getName()));
 
         // Type or Brand (e.g. VISA - Auto calculated)
-        $card->appendChild($domTree->createElement('type', $credit_card->getBrand()));
+        $brand = $credit_card->getBrand();
+        // Realex name for mastercard is different to Omnipay
+        if($brand=="mastercard") $brand="mc";
+
+        $card->appendChild($domTree->createElement('type', $brand));
 
         // Issue number
         $card->appendChild($domTree->createElement('issueno', $credit_card->getIssueNumber()));
