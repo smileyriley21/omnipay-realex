@@ -138,27 +138,7 @@ class RemoteGateway extends AbstractGateway
     {
         return $this->createRequest('\Omnipay\Realex\Message\CreateCardRequest', $parameters);
     }
-    /**
-     * Update Card
-     *
-     * If you need to update only some card details, like the billing
-     * address or expiration date, you can do so without having to re-enter
-     * the full card details. Realex also works directly with card networks
-     * so that your customers can continue using your service without
-     * interruption.
-     *
-     * When you update a card, Realex will automatically validate the card.
-     *
-     * This requires both a customerReference and a cardReference.
-     *
-     * @link https://stripe.com/docs/api#update_card
-     * @param array $parameters
-     * @return \Omnipay\Realex\Message\UpdateCardRequest
-     */
-    public function updateCard(array $parameters = array())
-    {
-        return $this->createRequest('\Omnipay\Realex\Message\UpdateCardRequest', $parameters);
-    }
+
     /**
      * Delete a card.
      *
