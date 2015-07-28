@@ -33,7 +33,7 @@ class DeleteCardRequest extends RemoteAbstractRequest
 
 
         $secret = $this->getSecret();
-        $tmp = "$timestamp.$merchantId.$orderId.$payerRef.$cardRef";
+        $tmp = "$timestamp.$merchantId.$payerRef.$cardRef";
 
 
         $sha1hash = sha1($tmp);
