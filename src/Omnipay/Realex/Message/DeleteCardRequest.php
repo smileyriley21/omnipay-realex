@@ -2,6 +2,7 @@
 
 namespace Omnipay\Realex\Message;
 
+use Omnipay\Realex\Message\DeleteCardResponse;
 /**
  * Realex Delete a Credit/Debit Card
  *
