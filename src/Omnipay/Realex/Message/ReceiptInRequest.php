@@ -36,6 +36,8 @@ class ReceiptInRequest extends RemoteAbstractRequest
         $tmp2 = "$sha1hash.$secret";
         $sha1hash = sha1($tmp2);
 
+
+
         $domTree = new \DOMDocument('1.0', 'UTF-8');
 
         // root element
@@ -56,31 +58,28 @@ class ReceiptInRequest extends RemoteAbstractRequest
         $orderId = $domTree->createElement('orderid', $orderId);
         $root->appendChild($orderId);
 
-        // Payment data
-        $paymentData = $domTree->createElement('paymentdata');
+        // amount
+        $amountEl = $domTree->createElement('amount', $amount);
+        $amountEl->setAttribute('currency', $this->getCurrency());
+        $root->appendChild($amountEl);
+
+        // Payer ref. The person this card is being assigned to
+        $root->appendChild($domTree->createElement('payerref', $payerRef));
+
+        // Card Reference (Customers name for it, e.g. Current Account and that in Realex)
+        $root->appendChild($domTree->createElement('paymentmethod', $cardRef));
 
         // Auto settle
         $autoSettle = $domTree->createElement('autosettle');
         $autoSettle->setAttribute('flag', "1");
-        $paymentData->appendChild($autoSettle);
+        $root->appendChild($autoSettle);
 
-        // amount
-        $amountEl = $domTree->createElement('amount', $amount);
-        $amountEl->setAttribute('currency', $this->getCurrency());
-        $paymentData->appendChild($amountEl);
-
-        // Payer ref. The person this card is being assigned to
-        $paymentData->appendChild($domTree->createElement('payerref', $payerRef));
-
-        // Card Reference (Customers name for it, e.g. Current Account and that in Realex)
-        $paymentData->appendChild($domTree->createElement('paymentmethod', $cardRef));
-
-        // Add to root node
-        $root->appendChild($paymentData);
+        // Hash key
+        $root->appendChild($domTree->createElement('sha1hash', $sha1hash));
 
         $xmlString = $domTree->saveXML($root);
 
-        // dd($xmlString);
+
 
         return $xmlString;
     }
