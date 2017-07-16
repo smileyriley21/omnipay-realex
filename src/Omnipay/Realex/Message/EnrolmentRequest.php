@@ -11,7 +11,7 @@ class EnrolmentRequest extends RemoteAbstractRequest
 {
 
     //  protected $endpoint = 'https://epage.payandshop.com/epage-3dsecure.cgi';
-    protected $endpoint = 'https://api.realexpayments.com/epage-remote-plugins.cgi';
+    protected $endpoint = 'https://api.realexpayments.com/epage-3dsecure.cgi';
 
 
     /**
