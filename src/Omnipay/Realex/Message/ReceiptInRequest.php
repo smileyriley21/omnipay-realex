@@ -10,7 +10,11 @@ use Omnipay\Common\Message\AbstractRequest;
  */
 class ReceiptInRequest extends RemoteAbstractRequest
 {
-    protected $endpoint = 'https://epage.payandshop.com/epage-remote-plugins.cgi';
+
+
+    //protected $endpoint = 'https://epage.payandshop.com/epage-remote-plugins.cgi';
+    protected $endpoint = 'https://api.realexpayments.com/epage-remote-plugins.cgi';
+
 
 
     /**

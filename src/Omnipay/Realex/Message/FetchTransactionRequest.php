@@ -9,7 +9,8 @@ use Omnipay\Common\Message\AbstractRequest;
  */
 class FetchTransactionRequest extends RemoteAbstractRequest
 {
-    protected $endpoint = 'https://epage.payandshop.com/epage-remote.cgi';
+    //protected $endpoint = 'https://epage.payandshop.com/epage-remote.cgi';
+    protected $endpoint = 'https://api.realexpayments.com/epage-remote.cgi';
 
     /**
      * Get the XML registration string to be sent to the gateway

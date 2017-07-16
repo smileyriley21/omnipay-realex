@@ -9,7 +9,10 @@ use Omnipay\Common\Exception\InvalidRequestException;
  */
 class EnrolmentRequest extends RemoteAbstractRequest
 {
-    protected $endpoint = 'https://epage.payandshop.com/epage-3dsecure.cgi';
+
+    //  protected $endpoint = 'https://epage.payandshop.com/epage-3dsecure.cgi';
+    protected $endpoint = 'https://api.realexpayments.com/epage-remote-plugins.cgi';
+
 
     /**
      * Get the XML registration string to be sent to the gateway

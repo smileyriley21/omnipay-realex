@@ -9,7 +9,9 @@ use Omnipay\Common\Message\AbstractRequest;
  */
 class VoidRequest extends RemoteAbstractRequest
 {
-    protected $endpoint = 'https://epage.payandshop.com/epage-remote.cgi';
+    //protected $endpoint = 'https://epage.payandshop.com/epage-remote.cgi';
+    protected $endpoint = 'https://api.realexpayments.com/epage-remote.cgi';
+
 
     public function getTransactionReference()
     {

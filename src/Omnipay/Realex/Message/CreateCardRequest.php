@@ -12,7 +12,8 @@ use Omnipay\Realex\Message\CreateCardResponse;
 class CreateCardRequest extends RemoteAbstractRequest
 {
 
-    protected $endpoint = 'https://epage.payandshop.com/epage-remote-plugins.cgi';
+    //protected $endpoint = 'https://epage.payandshop.com/epage-remote-plugins.cgi';
+    protected $endpoint = 'https://api.realexpayments.com/epage-remote-plugins.cgi';
 
 
 

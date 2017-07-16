@@ -13,7 +13,8 @@ use Omnipay\Realex\Message\CreatePayerResponse;
 class CreatePayerRequest extends RemoteAbstractRequest
 {
 
-    protected $endpoint = 'https://epage.payandshop.com/epage-remote-plugins.cgi';
+    //protected $endpoint = 'https://epage.payandshop.com/epage-remote-plugins.cgi';
+    protected $endpoint = 'https://api.realexpayments.com/epage-remote-plugins.cgi';
 
 
 

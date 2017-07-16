@@ -12,7 +12,8 @@ use Omnipay\Realex\Message\DeleteCardResponse;
 class DeleteCardRequest extends RemoteAbstractRequest
 {
 
-    protected $endpoint = 'https://epage.payandshop.com/epage-remote-plugins.cgi';
+    //protected $endpoint = 'https://epage.payandshop.com/epage-remote-plugins.cgi';
+    protected $endpoint = 'https://api.realexpayments.com/epage-remote-plugins.cgi';
 
     /**
      * Return the data required by this request
