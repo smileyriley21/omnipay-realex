@@ -14,6 +14,7 @@ class AuthRequest extends RemoteAbstractRequest
     //protected $endpoint = 'https://epage.payandshop.com/epage-remote.cgi'; Test
     protected $endpoint = 'https://api.realexpayments.com/epage-remote.cgi';
 
+
     public function getCavv()
     {
         return $this->getParameter('cavv');
