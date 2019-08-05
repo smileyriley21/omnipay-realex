@@ -198,4 +198,59 @@ class RemoteGateway extends AbstractGateway
         return $this->createRequest('\Omnipay\Realex\Message\ReceiptInRequest', $parameters);
     }
 
+    /**
+     * Check the 3d secure version that a card supports
+     *
+     *
+     * @param array $parameters
+     * @return \Omnipay\Realex\Message\3DSecureVersionResponse
+     */
+    public function check3dSecureVersion(array $parameters = array()){
+
+        return $this->createRequest('\Omnipay\Realex\Message\Check3DSecureVersionRequest', $parameters);
+
+    }
+
+
+    /**
+     * Create and initialize a request object
+     *
+     * This function is usually used to create objects of type
+     * Omnipay\Common\Message\AbstractRequest (or a non-abstract subclass of it)
+     * and initialise them with using existing parameters from this gateway.
+     *
+     * Example:
+     *
+     * <code>
+     *   class MyRequest extends \Omnipay\Common\Message\AbstractRequest {};
+     *
+     *   class MyGateway extends \Omnipay\Common\AbstractGateway {
+     *     function myRequest($parameters) {
+     *       $this->createRequest('MyRequest', $parameters);
+     *     }
+     *   }
+     *
+     *   // Create the gateway object
+     *   $gw = Omnipay::create('MyGateway');
+     *
+     *   // Create the request object
+     *   $myRequest = $gw->myRequest($someParameters);
+     * </code>
+     *
+     * @see \Omnipay\Common\Message\AbstractRequest
+     * @param string $class The request class name
+     * @param array $parameters
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
+    protected function createRequest($class, array $parameters)
+    {
+
+
+        $obj = new $class($this->httpClient, $this->httpRequest);
+
+
+
+        return $obj->initialize(array_replace($this->getParameters(), $parameters));
+    }
+
 }
